@@ -55,7 +55,7 @@ Returns $True if the InteractiveMode variable has been and $False if it hasn't b
 
 ### Examples
 
-You can browse through the sample koshufile.ps1 in the examples directory if you need help getting started.
+You can browse through the sample `koshufile.ps1` in the examples directory if you need help getting started.
 
 ## License
 MIT (http://opensource.org/licenses/mit-license.php)
