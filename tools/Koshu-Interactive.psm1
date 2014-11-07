@@ -1,12 +1,16 @@
 function Read-Option {
 	Param(
 		[Parameter(Position=0,Mandatory=1)] [string]$message,
-		[Parameter(Position=1,Mandatory=0)] $options=@('yes','no'),
+		[Parameter(Position=1,Mandatory=1)] [string[]]$options=@(),
 		[Parameter(Position=2,Mandatory=0)] [string]$separator='/',
 		[Parameter(Position=3,Mandatory=0)] [switch]$abortable,
 		[Parameter(Position=4,Mandatory=0)] [scriptblock]$onAbort,
 		[Parameter(Position=5,Mandatory=0)] [switch]$force
 	)
+
+	if ($options.length -lt 1) {
+		Write-Error "Options must not be empty. Example: @('Option 1','Option 2')"
+	}
 
 	if ($force -eq $false -and (Get-Interactive) -eq $false) {
 		Write-Error "Read-Option is not allowed when InteractiveMode is set to false. Use 'Set-Interactive $True' to enable 'Read-Option'."
