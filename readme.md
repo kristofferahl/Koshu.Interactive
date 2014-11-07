@@ -53,6 +53,10 @@ Returns the value of the InteractiveMode variable. If the variable hasn't been s
 
 Returns $True if the InteractiveMode variable has been and $False if it hasn't been set.
 
+### Examples
+
+You can browse through the sample koshufile.ps1 in the examples directory if you need help getting started.
+
 ## License
 MIT (http://opensource.org/licenses/mit-license.php)
 
