@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+		<id>Koshu.Interactive</id>
+		<version>1.0.0</version>
+		<authors>Kristoffer Ahl</authors>
+		<owners>Kristoffer Ahl</owners>
+		<projectUrl>https://github.com/kristofferahl/Koshu.Interactive</projectUrl>
+		<licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>Koshu plugin for simplifying user interactions in your psake scripts</description>
+		<tags>koshu user interaction plugin psake</tags>
+	</metadata>
+	<files>
+		<file src="**\*.*" exclude="examples\packages\**\*.*"  />
+	</files>
+</package>
