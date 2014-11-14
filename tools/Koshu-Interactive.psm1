@@ -20,7 +20,7 @@ function Read-Option {
 		$options += 'abort'
 	}
 
-	$prompt = "$message [ $($options | join-string -separator $separator) ]"
+	$prompt = "$message [ $($options -join $separator) ]"
 	$result = Read-Host -prompt $prompt
 	if ($options -contains $result) {
 		if ($result -eq 'abort' -and $onAbort) {
