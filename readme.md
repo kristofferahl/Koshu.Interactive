@@ -17,7 +17,9 @@ This plugin currently does not support configuration.
 	Read-Option `
 		-message <Message> `
 		-options <OptionsArray> `
-		-separator [<Separator>] ` # Optional. Defaults to '/'
+		-separator [<Separator>] ` # Optional. Defaults to `r`n
+		-optionFormat [<Format>] ` # Optional. Defaults to {index}. {option}
+		-promptFormat [<Format>] ` # Optional. Defaults to {message}`r`n{options}
 		-abortable ` # Optional switch for adding an 'abort' option
 		-onAbort [<ScriptBlock>] ` # Optional script block to execute if the abort option is specified
 		-force # Optional switch for triggering a prompt even when InteractiveMode is set to $False
@@ -61,7 +63,7 @@ You can browse through the sample `koshufile.ps1` in the examples directory if y
 MIT (http://opensource.org/licenses/mit-license.php)
 
 ## Contact
-Kristoffer Ahl (project founder)  
-Email: koshu@77dynamite.net  
-Twitter: http://twitter.com/kristofferahl  
+Kristoffer Ahl (project founder)
+Email: koshu@77dynamite.net
+Twitter: http://twitter.com/kristofferahl
 Website: http://www.77dynamite.com/
