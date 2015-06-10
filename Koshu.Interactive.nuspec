@@ -12,6 +12,9 @@
 		<tags>koshu user interaction plugin psake</tags>
 	</metadata>
 	<files>
-		<file src="**\*.*" exclude="examples\packages\**\*.*;*.sublime-*"  />
+		<file src="examples\**\*.*" exclude="examples\packages\**\*.*;" target="examples" />
+		<file src="tools\**\*.*" target="tools" />
+		<file src="koshu.manifest" />
+		<file src="readme.md" />
 	</files>
 </package>
