@@ -2,10 +2,12 @@ function Read-Option {
 	Param(
 		[Parameter(Position=0,Mandatory=1)] [string]$message,
 		[Parameter(Position=1,Mandatory=1)] [string[]]$options=@(),
-		[Parameter(Position=2,Mandatory=0)] [string]$separator='/',
-		[Parameter(Position=3,Mandatory=0)] [switch]$abortable,
-		[Parameter(Position=4,Mandatory=0)] [scriptblock]$onAbort,
-		[Parameter(Position=5,Mandatory=0)] [switch]$force
+		[Parameter(Position=2,Mandatory=0)] [string]$separator="`r`n",
+		[Parameter(Position=3,Mandatory=0)] [string]$optionFormat='{index}. {option}',
+		[Parameter(Position=4,Mandatory=0)] [string]$promptFormat="{message}`r`n{options}",
+		[Parameter(Position=5,Mandatory=0)] [switch]$abortable,
+		[Parameter(Position=6,Mandatory=0)] [scriptblock]$onAbort,
+		[Parameter(Position=7,Mandatory=0)] [switch]$force
 	)
 
 	if ($options.length -lt 1) {
@@ -20,16 +22,22 @@ function Read-Option {
 		$options += 'abort'
 	}
 
-	$prompt = "$message [ $($options -join $separator) ]"
+	$optionsPrompt = ($options | % { $optionFormat -replace '{index}',([array]::indexof($options,$_)+1) -replace '{option}',$_ }) -join $separator
+	$prompt = $promptFormat -replace '{message}',$message -replace '{options}',$optionsPrompt
 	$result = Read-Host -prompt $prompt
-	if ($options -contains $result) {
+	$index = $result -as [int]
+
+	if ($index -gt 0 -or $options -contains $result) {
+		if ($index -gt 0) {
+			$result = $options[$index-1]
+		}
 		if ($result -eq 'abort' -and $onAbort) {
 			& $onAbort
 		}
 		return $result
 	} else {
 		Write-Host 'Please enter a valid option...' -fore yellow
-		return Read-Option $message $options $separator $abortable $onAbort $force
+		return Read-Option $message $options $separator $optionFormat $promptFormat $abortable $onAbort $force
 	}
 }
 
@@ -42,7 +50,7 @@ function Read-Switch {
 	if ((InteractiveMode-Set) -eq $true -and (Get-Interactive) -eq $false) {
 		return $true
 	} else {
-		$result = Read-Option -message $message -options @('yes', 'no') -separator '/' $false $null $force
+		$result = Read-Option -message $message -options @('yes', 'no') -separator '/' -optionformat '{option}' -promptformat '{message} [ {options} ]' -abortable:$false -onabort $null -force:$force
 		if ($result.ToLower() -eq 'yes') {
 			return $true
 		} else {
