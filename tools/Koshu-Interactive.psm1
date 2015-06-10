@@ -27,8 +27,8 @@ function Read-Option {
 	$result = Read-Host -prompt $prompt
 	$index = $result -as [int]
 
-	if ($index -gt 0 -or $options -contains $result) {
-		if ($index -gt 0) {
+	if (($index -gt 0 -and $index -le $options.length) -or $options -contains $result) {
+		if (($index -gt 0 -and $index -le $options.length)) {
 			$result = $options[$index-1]
 		}
 		if ($result -eq 'abort' -and $onAbort) {
