@@ -2,7 +2,7 @@
 <package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 		<id>Koshu.Interactive</id>
-		<version>1.2.2</version>
+		<version>1.2.3</version>
 		<authors>Kristoffer Ahl</authors>
 		<owners>Kristoffer Ahl</owners>
 		<projectUrl>https://github.com/kristofferahl/Koshu.Interactive</projectUrl>
@@ -12,6 +12,9 @@
 		<tags>koshu user interaction plugin psake</tags>
 	</metadata>
 	<files>
-		<file src="**\*.*" exclude="examples\packages\**\*.*;*.sublime-*"  />
+		<file src="examples\**\*.*" exclude="examples\packages\**\*.*;" target="examples" />
+		<file src="tools\**\*.*" target="tools" />
+		<file src="koshu.manifest" />
+		<file src="readme.md" />
 	</files>
 </package>
